@@ -37,6 +37,30 @@ The ResearchKit Chrome Extension is designed to enhance your web browsing experi
 2. Right-click to open the context menu.
 3. Navigate to "Queries" and choose a saved URL or recipe to apply to the selected text.
 
+## Screenshots
+
+### Options Page
+
+![Options Page](images/options_screenshot.png)
+
+_Options page where you can add and manage URLs and recipes._
+
+![Drag and Drop](images/drag_and_drop_screenshot.png)
+
+_Drag and drop to reorder._
+
+### Context Menu
+
+![Context Menu](images/context_menu_screenshot.png)
+
+_Context menu showing saved URLs and recipes._
+
+### Popup
+
+![Popup](images/popup_screenshot.png)
+
+_Popup displaying saved URLs and recipes._
+
 ## TODO
 
 - **Functionality**
