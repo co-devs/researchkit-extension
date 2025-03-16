@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResearchKit Options</title>
+    <script defer src="scripts/options.js"></script>
+    <link rel="stylesheet" href="styles/options.css" />
+  </head>
+  <body>
+    <h1>ResearchKit Options</h1>
+
+    <h2>Saved URLs</h2>
+    <input type="text" id="urlName" placeholder="Name" />
+    <input type="text" id="urlValue" placeholder="URL with {placeholder}" />
+    <button id="addUrl">Add URL</button>
+    <table id="urlTable">
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Action</th>
+      </tr>
+    </table>
+
+    <h2>Saved Recipes</h2>
+    <input type="text" id="recipeName" placeholder="Name" />
+    <input type="text" id="recipeValue" placeholder="Recipe" />
+    <button id="addRecipe">Add Recipe</button>
+    <table id="recipeTable">
+      <tr>
+        <th>Name</th>
+        <th>Recipe</th>
+        <th>Action</th>
+      </tr>
+    </table>
+
+    <h2>CyberChef URL</h2>
+    <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
+    <button id="saveCyberchefUrl">Save</button>
+    <button id="resetCyberchefUrl">Reset to Default</button>
+  </body>
+</html>
