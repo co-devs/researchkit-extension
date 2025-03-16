@@ -37,6 +37,12 @@ The ResearchKit Chrome Extension is designed to enhance your web browsing experi
 2. Right-click to open the context menu.
 3. Navigate to "Queries" and choose a saved URL or recipe to apply to the selected text.
 
+## TODO
+
+- [ ] Add note property to saved lookup URLs and Recipes. This note won't be visible in the options page table, but if you click on the name will appear in an editable popup.
+- [ ] Prevent popup page from getting too long and use a scrollbar instead once it reaches a certain length.
+- [ ] Allow the user to further organize saved lookup URLs and recipes. For example, under "Recipes" in the context menu, a custom menu named "Deobfuscate" that users can then assign specific recipes to appear under.
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
