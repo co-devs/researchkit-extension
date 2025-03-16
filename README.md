@@ -1,5 +1,7 @@
 # ResearchKit Chrome Extension
 
+This Chrome Extension is a bit of an exercise in "vibe coding." While I'm familiar with the structure and functionality of browser extensions, and with javascript, I'm a developer of neither. This project heavily relied on copilot for implementing functionality and - since I'm already using it - generating documentation including commit messages and the rest of this README file.
+
 ## Overview
 
 The ResearchKit Chrome Extension is designed to enhance your web browsing experience by providing quick access to saved URLs and recipes. It allows users to perform specific actions on selected text using predefined URLs and CyberChef recipes.
