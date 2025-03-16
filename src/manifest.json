@@ -5,8 +5,7 @@
     "manifest_version": 3,
     "permissions": [
         "storage",
-        "contextMenus",
-        "tabs"
+        "contextMenus"
     ],
     "background": {
         "service_worker": "scripts/background.js"
