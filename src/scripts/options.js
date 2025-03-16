@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("saveCyberchefUrl");
   const resetButton = document.getElementById("resetCyberchefUrl");
 
+  const urlNameInput = document.getElementById("urlName");
+  const urlValueInput = document.getElementById("urlValue");
+  const addUrlButton = document.getElementById("addUrl");
+
+  const recipeNameInput = document.getElementById("recipeName");
+  const recipeValueInput = document.getElementById("recipeValue");
+  const addRecipeButton = document.getElementById("addRecipe");
+
   const defaultCyberchefUrl =
     "https://gchq.github.io/CyberChef/#recipe=${recipe}&input=${encodedText}";
 
@@ -74,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tr = document.createElement("tr");
     tr.draggable = true;
     tr.dataset.index = index;
+    tr.dataset.type = "url";
     tr.innerHTML = `<td>${item.name}</td><td><code>${item.url}</code></td>`;
     let actionTd = document.createElement("td");
 
@@ -92,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tr = document.createElement("tr");
     tr.draggable = true;
     tr.dataset.index = index;
+    tr.dataset.type = "recipe";
     tr.innerHTML = `<td>${item.name}</td><td><code>${item.recipe}</code></td>`;
     let actionTd = document.createElement("td");
 
@@ -126,7 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleDrop(event) {
     event.preventDefault();
-    if (draggedRow !== event.target) {
+    if (
+      draggedRow !== event.target &&
+      draggedRow.dataset.type === event.target.closest("tr").dataset.type
+    ) {
       let rows = Array.from(draggedRow.parentNode.children);
       let draggedIndex = rows.indexOf(draggedRow);
       let targetIndex = rows.indexOf(event.target.closest("tr"));
@@ -175,10 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.runtime.sendMessage({ action: "updateContextMenu" });
   }
 
-  // Set up the add URL button to save a new URL when clicked
-  document.getElementById("addUrl").addEventListener("click", () => {
-    let name = document.getElementById("urlName").value.trim();
-    let url = document.getElementById("urlValue").value.trim();
+  // Function to add a new URL
+  function addUrl() {
+    let name = urlNameInput.value.trim();
+    let url = urlValueInput.value.trim();
     // Ensure the name is not empty and the URL contains the placeholder
     if (name && url.includes("{placeholder}")) {
       let newItem = { id: Date.now(), name, url };
@@ -186,18 +199,49 @@ document.addEventListener("DOMContentLoaded", () => {
       chrome.storage.local.set({ savedUrls }, loadOptions);
       chrome.runtime.sendMessage({ action: "updateContextMenu" });
     }
-  });
+  }
 
-  // Set up the add Recipe button to save a new Recipe when clicked
-  document.getElementById("addRecipe").addEventListener("click", () => {
-    let name = document.getElementById("recipeName").value.trim();
-    let recipe = document.getElementById("recipeValue").value.trim();
+  // Function to add a new Recipe
+  function addRecipe() {
+    let name = recipeNameInput.value.trim();
+    let recipe = recipeValueInput.value.trim();
     // Ensure the name and recipe are not empty
     if (name && recipe) {
       let newItem = { id: Date.now(), name, recipe };
       savedRecipes.push(newItem);
       chrome.storage.local.set({ savedRecipes }, loadOptions);
       chrome.runtime.sendMessage({ action: "updateContextMenu" });
+    }
+  }
+
+  // Set up the add URL button to save a new URL when clicked
+  addUrlButton.addEventListener("click", addUrl);
+
+  // Set up the add Recipe button to save a new Recipe when clicked
+  addRecipeButton.addEventListener("click", addRecipe);
+
+  // Add event listeners to handle pressing the enter key
+  urlNameInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      addUrl();
+    }
+  });
+
+  urlValueInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      addUrl();
+    }
+  });
+
+  recipeNameInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      addRecipe();
+    }
+  });
+
+  recipeValueInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      addRecipe();
     }
   });
 
