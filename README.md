@@ -39,11 +39,13 @@ The ResearchKit Chrome Extension is designed to enhance your web browsing experi
 
 ## TODO
 
-- [ ] Add note property to saved lookup URLs and Recipes. This note won't be visible in the options page table, but if you click on the name will appear in an editable popup.
-- [ ] Prevent popup page from getting too long and use a scrollbar instead once it reaches a certain length.
-- [ ] Allow the user to further organize saved lookup URLs and recipes. For example, under "Recipes" in the context menu, a custom menu named "Deobfuscate" that users can then assign specific recipes to appear under.
-- [ ] It'd be good for the input field widths to align with the columns of the tables beneath them.
-- [ ] The CyberChef URL box appears to have shrunk, should be wider, maybe 50%?
+- **Functionality**
+  - [ ] Add note property to saved lookup URLs and Recipes. This note won't be visible in the options page table, but if you click on the name will appear in an editable popup.
+  - [ ] Allow the user to further organize saved lookup URLs and recipes. For example, under "Recipes" in the context menu, a custom menu named "Deobfuscate" that users can then assign specific recipes to appear under.
+- **Style**
+  - [ ] Prevent popup page from getting too long and use a scrollbar instead once it reaches a certain length.
+  - [ ] It'd be good for the input field widths to align with the columns of the tables beneath them.
+  - [ ] The CyberChef URL box appears to have shrunk, should be wider, maybe 50%?
 
 ## Contributing
 
