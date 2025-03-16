@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.getElementById("resetCyberchefUrl");
 
   const defaultCyberchefUrl =
-    "https://gchq.github.io/CyberChef/#recipe=${selectedItem.recipe}&input=${encodedText}";
+    "https://gchq.github.io/CyberChef/#recipe=${recipe}&input=${encodedText}";
 
   // Load the saved CyberChef URL from storage
   chrome.storage.local.get("cyberchefUrl", (data) => {

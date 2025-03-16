@@ -74,7 +74,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       let recipes = data.savedRecipes || [];
       let cyberchefUrl =
         data.cyberchefUrl ||
-        "https://gchq.github.io/CyberChef/#recipe=${selectedItem.recipe}&input=${encodedText}";
+        "https://gchq.github.io/CyberChef/#recipe=${recipe}&input=${encodedText}";
 
       if (info.menuItemId.startsWith("url-")) {
         // Find the selected URL item
@@ -97,7 +97,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           // Base64 encode the selected text and replace the placeholders in the URL
           let encodedText = btoa(info.selectionText);
           let finalUrl = cyberchefUrl
-            .replace("${selectedItem.recipe}", selectedItem.recipe)
+            .replace("${recipe}", selectedItem.recipe)
             .replace("${encodedText}", encodedText);
           // Open the final URL in a new tab
           chrome.tabs.create({ url: finalUrl });
