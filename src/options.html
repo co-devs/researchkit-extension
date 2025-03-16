@@ -17,9 +17,16 @@
         in the format {placeholder}
         (<code>https://google.com/search?q={placeholder}</code>).
       </p>
-      <input type="text" id="urlName" placeholder="Name" />
-      <input type="text" id="urlValue" placeholder="URL with {placeholder}" />
-      <button id="addUrl">Add URL</button>
+      <div class="inline-container">
+        <input type="text" id="urlName" class="name-input" placeholder="Name" />
+        <input
+          type="text"
+          id="urlValue"
+          class="value-input"
+          placeholder="URL with {placeholder}"
+        />
+        <button id="addUrl">Add URL</button>
+      </div>
       <table id="urlTable">
         <tr>
           <th>Name</th>
@@ -38,9 +45,21 @@
         </code>
         copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
       </p>
-      <input type="text" id="recipeName" placeholder="Name" />
-      <input type="text" id="recipeValue" placeholder="Recipe" />
-      <button id="addRecipe">Add Recipe</button>
+      <div class="inline-container">
+        <input
+          type="text"
+          id="recipeName"
+          class="name-input"
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          id="recipeValue"
+          class="value-input"
+          placeholder="Recipe"
+        />
+        <button id="addRecipe">Add Recipe</button>
+      </div>
       <table id="recipeTable">
         <tr>
           <th>Name</th>

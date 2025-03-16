@@ -53,6 +53,7 @@ button {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 4px;
+  white-space: nowrap; /* Ensure text does not wrap */
 }
 
 button:hover {
@@ -62,10 +63,17 @@ button:hover {
 input[type="text"] {
   padding: 5px;
   margin: 5px 0;
-  width: calc(50% - 10px);
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+input.name-input {
+  width: calc(33% - 10px);
+}
+
+input.value-input {
+  width: calc(67% - 10px);
 }
 
 code {
