@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to create a table row element for a given URL
   function createUrlRow(item, index) {
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${item.name}</td><td>${item.url}</td>`;
+    tr.innerHTML = `<td>${item.name}</td><td><code>${item.url}</code></td>`;
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     // Set up the remove button to delete the item when clicked
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to create a table row element for a given Recipe
   function createRecipeRow(item, index) {
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${item.name}</td><td>${item.recipe}</td>`;
+    tr.innerHTML = `<td>${item.name}</td><td><code>${item.recipe}</code></td>`;
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     // Set up the remove button to delete the item when clicked
