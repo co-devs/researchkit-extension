@@ -25,6 +25,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  table-layout: fixed; /* Ensure table cells do not expand */
 }
 
 th,
@@ -32,6 +33,7 @@ td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  word-wrap: break-word; /* Ensure long strings wrap within the cell */
 }
 
 th {
@@ -107,4 +109,20 @@ code {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%; /* Name column */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: auto; /* URL/Recipe column */
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 10%; /* Action column */
+  white-space: nowrap; /* Prevent wrapping */
 }

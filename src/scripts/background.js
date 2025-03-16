@@ -25,7 +25,7 @@ function createContextMenu() {
     chrome.contextMenus.create({
       id: "urls",
       parentId: "queries",
-      title: "URLs",
+      title: "Lookups",
       contexts: ["selection"],
     });
 
