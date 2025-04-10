@@ -8,5 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate YAML file
-        run: yamllint src/manifest.yml
+      - name: Validate JSON file
+        run: jq . src/manifest.json > /dev/null || (echo "Invalid JSON" && exit 1)
+      - name: Validate Required Fields
+        run: |
+          jq -e '.name and .version and .manifest_version' src/manifest.json > /dev/null || (echo "Missing required fields in manifest.json" && exit 1)
