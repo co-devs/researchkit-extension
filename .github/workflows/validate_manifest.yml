@@ -4,7 +4,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  validate-yaml:
+  validate-manifest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
