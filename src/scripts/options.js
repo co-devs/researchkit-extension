@@ -231,6 +231,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Function to import lookups and recipes from a JSON file
+  function importData(event) {
+    const fileInput = document.getElementById("importFile");
+    fileInput.click();
+
+    fileInput.onchange = () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const importedData = JSON.parse(e.target.result);
+            chrome.storage.local.get(["savedUrls", "savedRecipes"], (currentData) => {
+              const mergedUrls = [...(currentData.savedUrls || []), ...(importedData.savedUrls || [])];
+              const mergedRecipes = [...(currentData.savedRecipes || []), ...(importedData.savedRecipes || [])];
+
+              chrome.storage.local.set({ savedUrls: mergedUrls, savedRecipes: mergedRecipes }, () => {
+                alert("Data imported successfully.");
+                loadOptions();
+              });
+            });
+          } catch (error) {
+            alert("Invalid JSON file.");
+          }
+        };
+        reader.readAsText(file);
+      }
+    };
+  }
+
   // Set up the add URL button to save a new URL when clicked
   addUrlButton.addEventListener("click", addUrl);
 
@@ -264,6 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add event listener to the export button
   document.getElementById("exportData").addEventListener("click", exportData);
+
+  // Add event listener to the import button
+  document.getElementById("importData").addEventListener("click", importData);
 
   // Load the saved options when the page is loaded
   loadOptions();
