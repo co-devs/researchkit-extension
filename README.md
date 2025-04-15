@@ -4,7 +4,11 @@ This Chrome Extension is a bit of an exercise in "vibe coding." While I'm famili
 
 ## Overview
 
-The ResearchKit Chrome Extension is designed to enhance your web browsing experience by providing quick access to saved URLs and recipes. It allows users to perform specific actions on selected text using predefined URLs and CyberChef recipes.
+ResearchKit is a customizable extension meant to streamline research workflows. Highlight text on a webpage and select from a list of lookups or CyberChef recipes. Example use cases:
+
+- Look up IP addresses with a VirusTotal lookup
+- Check domains with a Spamhaus lookup
+- Decode data with a CyberChef recipe
 
 ## Features
 
@@ -63,9 +67,14 @@ _Popup displaying saved URLs and recipes._
 
 ## TODO
 
+- **Administrative**
+  - [ ] Publish beta version for testing changes before pushing to the main extension.
 - **Functionality**
   - [ ] Add note property to saved lookup URLs and Recipes. This note won't be visible in the options page table, but if you click on the name will appear in an editable popup.
   - [ ] Allow the user to further organize saved lookup URLs and recipes. For example, under "Recipes" in the context menu, a custom menu named "Deobfuscate" that users can then assign specific recipes to appear under.
+  - [ ] Persist saved settings across devices that the user is signed in to.
+  - [ ] Allow export and import of saved settings.
+  - [ ] Change handling of CyberChef recipes so that they can be copied from the "Save Recipe" button rather than copying from the URL.
 - **Style**
   - [ ] Prevent popup page from getting too long and use a scrollbar instead once it reaches a certain length.
   - [ ] It'd be good for the input field widths to align with the columns of the tables beneath them.
