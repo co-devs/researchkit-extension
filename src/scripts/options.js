@@ -214,6 +214,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Function to export saved lookups and recipes to a JSON file
+  function exportData() {
+    chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
+      const exportData = {
+        savedUrls: data.savedUrls || [],
+        savedRecipes: data.savedRecipes || []
+      };
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "researchkit_export.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
   // Set up the add URL button to save a new URL when clicked
   addUrlButton.addEventListener("click", addUrl);
 
@@ -244,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
       addRecipe();
     }
   });
+
+  // Add event listener to the export button
+  document.getElementById("exportData").addEventListener("click", exportData);
 
   // Load the saved options when the page is loaded
   loadOptions();
