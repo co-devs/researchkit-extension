@@ -73,7 +73,7 @@ _Popup displaying saved URLs and recipes._
   - [ ] Add note property to saved lookup URLs and Recipes. This note won't be visible in the options page table, but if you click on the name will appear in an editable popup.
   - [ ] Allow the user to further organize saved lookup URLs and recipes. For example, under "Recipes" in the context menu, a custom menu named "Deobfuscate" that users can then assign specific recipes to appear under.
   - [ ] Persist saved settings across devices that the user is signed in to.
-  - [ ] Allow export and import of saved settings.
+  - [x] Allow export and import of saved settings.
   - [ ] Change handling of CyberChef recipes so that they can be copied from the "Save Recipe" button rather than copying from the URL.
 - **Style**
   - [ ] Prevent popup page from getting too long and use a scrollbar instead once it reaches a certain length.

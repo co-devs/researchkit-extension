@@ -1,7 +1,7 @@
 {
     "name": "ResearchKit",
     "description": "ResearchKit is a simple tool for researching and manipulating strings found in web pages",
-    "version": "0.1",
+    "version": "0.2",
     "manifest_version": 3,
     "permissions": [
         "storage",
