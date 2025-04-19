@@ -300,4 +300,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load the saved options when the page is loaded
   loadOptions();
+
+  const urlsSection = document.getElementById("urlsSection");
+  const recipesSection = document.getElementById("recipesSection");
+  const advancedSettingsSection = document.getElementById("advancedSettingsSection");
+  const showUrlsButton = document.getElementById("showUrls");
+  const showRecipesButton = document.getElementById("showRecipes");
+  const showAdvancedSettingsButton = document.getElementById("showAdvancedSettings");
+
+  // Function to show the URLs section and hide the Recipes and Advanced Settings sections
+  function showUrls() {
+    urlsSection.classList.add("active");
+    recipesSection.classList.remove("active");
+    advancedSettingsSection.classList.remove("active");
+  }
+
+  // Function to show the Recipes section and hide the URLs and Advanced Settings sections
+  function showRecipes() {
+    recipesSection.classList.add("active");
+    urlsSection.classList.remove("active");
+    advancedSettingsSection.classList.remove("active");
+  }
+
+  // Function to show the Advanced Settings section and hide the URLs and Recipes sections
+  function showAdvancedSettings() {
+    advancedSettingsSection.classList.add("active");
+    urlsSection.classList.remove("active");
+    recipesSection.classList.remove("active");
+  }
+
+  // Add event listeners to the menu buttons
+  showUrlsButton.addEventListener("click", showUrls);
+  showRecipesButton.addEventListener("click", showRecipes);
+  showAdvancedSettingsButton.addEventListener("click", showAdvancedSettings);
+
+  // Show the URLs section by default
+  showUrls();
+
+  const darkModeToggle = document.getElementById("darkModeToggle");
+
+  // Load the saved dark mode preference
+  chrome.storage.local.get("darkMode", (data) => {
+    if (data.darkMode) {
+      document.body.classList.add("dark-mode");
+      darkModeToggle.checked = true;
+    }
+  });
+
+  // Toggle dark mode and save the preference
+  darkModeToggle.addEventListener("change", () => {
+    const isDarkMode = darkModeToggle.checked;
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    chrome.storage.local.set({ darkMode: isDarkMode });
+
+    // Notify the popup to update its dark mode
+    chrome.runtime.sendMessage({ action: "toggleDarkMode", darkMode: isDarkMode });
+  });
 });

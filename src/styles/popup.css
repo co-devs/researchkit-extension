@@ -2,14 +2,15 @@ body {
   font-family: Arial, sans-serif;
   width: 300px;
   padding: 10px;
-  background-color: #f4f4f9;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
 }
 
 h1,
 h2,
 h3 {
-  color: #333;
+  color: var(--text-color);
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -23,7 +24,7 @@ ul {
 li {
   margin-bottom: 5px; /* Reduced gap */
   padding: 10px;
-  background-color: white;
+  background-color: var(--container-background);
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -32,7 +33,7 @@ li {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 5px 10px;
@@ -41,18 +42,18 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: var(--secondary-color);
 }
 
 a {
   display: block;
   margin-top: 20px;
   text-align: center;
-  color: #4caf50;
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #45a049;
+  color: var(--primary-color);
 }

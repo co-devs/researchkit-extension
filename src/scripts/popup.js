@@ -21,4 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
       recipeList.appendChild(li);
     });
   });
+
+    // Load the saved dark mode preference
+    chrome.storage.local.get("darkMode", (data) => {
+      if (data.darkMode) {
+        document.body.classList.add("dark-mode");
+      }
+    });
+  
+    // Listen for changes to the dark mode preference
+    chrome.runtime.onMessage.addListener((message) => {
+      if (message.action === "toggleDarkMode") {
+        document.body.classList.toggle("dark-mode", message.darkMode);
+      }
+    });
 });
