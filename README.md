@@ -49,7 +49,7 @@ ResearchKit is a customizable extension meant to streamline research workflows. 
 
 _Saved lookups / URLs_
 
-![](images/options_recipes_screenshot)
+![](images/options_recipes_screenshot.png)
 
 _Saved CyberChef recipes_
 
