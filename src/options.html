@@ -11,82 +11,89 @@
     <div class="container">
       <h1>ResearchKit Options</h1>
 
-      <h2>Saved URLs</h2>
-      <p class="info-paragraph">
-        Add URLs with a placeholder for selected text. The placeholder should be
-        in the format {placeholder}
-        (<code>https://google.com/search?q={placeholder}</code>).
-      </p>
-      <div class="inline-container">
-        <input type="text" id="urlName" class="name-input" placeholder="Name" />
-        <input
-          type="text"
-          id="urlValue"
-          class="value-input"
-          placeholder="URL with {placeholder}"
-        />
-        <button id="addUrl">Add URL</button>
+      <!-- Menu for selecting sections -->
+      <div class="menu">
+        <button id="showUrls">Saved URLs</button>
+        <button id="showRecipes">Saved Recipes</button>
+        <button id="showAdvancedSettings">Advanced Settings</button>
       </div>
-      <table id="urlTable">
-        <tr>
-          <th>Name</th>
-          <th>URL</th>
-          <th>Action</th>
-        </tr>
-      </table>
 
-      <h2>Saved Recipes</h2>
-      <p class="info-paragraph">
-        Add recipes that can be run on selected text using CyberChef. The recipe
-        can be copied from the CyberChef URL after <code>#recipe=</code> and
-        before <code>&input=</code>. For example, given
-        <code style="word-wrap: break-word">
-          https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')&input=YXNkZg
-        </code>
-        copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
-      </p>
-      <div class="inline-container">
-        <input
-          type="text"
-          id="recipeName"
-          class="name-input"
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          id="recipeValue"
-          class="value-input"
-          placeholder="Recipe"
-        />
-        <button id="addRecipe">Add Recipe</button>
-      </div>
-      <table id="recipeTable">
-        <tr>
-          <th>Name</th>
-          <th>Recipe</th>
-          <th>Action</th>
-        </tr>
-      </table>
-
-      <details>
-        <h3>CyberChef URL</h3>
-        <summary>Advanced Settings</summary>
-        <div class="advanced-settings">
-          <p class="info-paragraph">
-            Set the URL for CyberChef. You can reset it to the default value if needed.
-          </p>
-          <div class="inline-container"></div>
-            <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
-            <button id="saveCyberchefUrl">Save</button>
-            <button id="resetCyberchefUrl">Reset to Default</button>
-          </div>
-          <div class="inline-container">
-            <button id="exportData">Export Configuration</button>
-            <input type="file" id="importFile" accept="application/json" style="display: none;" />
-            <button id="importData">Import Lookups & Recipes</button>
-          </div>
+      <!-- Saved URLs Section -->
+      <div id="urlsSection" class="section">
+        <h2>Saved URLs</h2>
+        <p class="info-paragraph">
+          Add URLs with a placeholder for selected text. The placeholder should be
+          in the format {placeholder}
+          (<code>https://google.com/search?q={placeholder}</code>).
+        </p>
+        <div class="inline-container">
+          <input type="text" id="urlName" class="name-input" placeholder="Name" />
+          <input
+            type="text"
+            id="urlValue"
+            class="value-input"
+            placeholder="URL with {placeholder}"
+          />
+          <button id="addUrl">Add URL</button>
         </div>
-      </details>
+        <table id="urlTable">
+          <tr>
+            <!-- Table rows will be dynamically added -->
+          </tr>
+        </table>
+      </div>
+
+      <!-- Saved Recipes Section -->
+      <div id="recipesSection" class="section">
+        <h2>Saved Recipes</h2>
+        <p class="info-paragraph">
+          Add recipes that can be run on selected text using CyberChef. The recipe
+          can be copied from the CyberChef URL after <code>#recipe=</code> and
+          before <code>&input=</code>. For example, given
+          <code style="word-wrap: break-word">
+          </code>
+          copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
+        </p>
+        <div class="inline-container">
+          <input
+            type="text"
+            id="recipeName"
+            class="name-input"
+            placeholder="Recipe Name"
+          />
+          <input
+            type="text"
+            id="recipeValue"
+            class="value-input"
+            placeholder="Recipe Value"
+          />
+          <button id="addRecipe">Add Recipe</button>
+        </div>
+        <table id="recipeTable">
+          <tr>
+            <!-- Table rows will be dynamically added -->
+          </tr>
+        </table>
+      </div>
+
+      <div id="advancedSettingsSection" class="section">
+        <h2>Advanced Settings</h2>
+        <h3>CyberChef URL</h3>
+        <p class="info-paragraph">
+          Set the URL for CyberChef. You can reset it to the default value if needed.
+        </p>
+        <div class="inline-container">
+          <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
+          <button id="saveCyberchefUrl">Save</button>
+          <button id="resetCyberchefUrl">Reset to Default</button>
+        </div>
+        <h3>Import / Export Settings</h3>
+        <div class="inline-container">
+          <button id="exportData">Export Configuration</button>
+          <input type="file" id="importFile" accept="application/json" style="display: none;" />
+          <button id="importData">Import Lookups & Recipes</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
