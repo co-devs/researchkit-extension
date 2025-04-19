@@ -1,14 +1,28 @@
+:root {
+  --background-color: #f8f8fc;
+  --text-color: #06070a;
+  --container-background: #ffffff;
+  --primary-color: #4463ee;
+  --secondary-color: #793fee;
+  --accent-color: #33bdeb;
+  --table-header-background: #f2f2f2;
+  --table-row-even-background: #f9f9f9;
+  --table-row-hover-background: #f1f1f1;
+  --border-color: #ddd;
+  --input-border-color: #ccc;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f8fc; /* Updated background color */
-  color: #06070a; /* Updated text color */
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
   padding: 20px;
 }
 
 h1,
 h2 {
-  color: #06070a; /* Updated text color */
+  color: var(--text-color);
 }
 
 h1 {
@@ -26,31 +40,31 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
-  table-layout: fixed; /* Ensure table cells do not expand */
+  table-layout: fixed;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   padding: 8px;
   text-align: left;
-  word-wrap: break-word; /* Ensure long strings wrap within the cell */
+  word-wrap: break-word;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: var(--table-header-background);
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--table-row-even-background);
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: var(--table-row-hover-background);
 }
 
 button {
-  background-color: #4463ee; /* Primary color */
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 5px 10px;
@@ -60,14 +74,14 @@ button {
 }
 
 button:hover {
-  background-color: #793fee; /* Secondary color */
+  background-color: var(--secondary-color);
 }
 
 input[type="text"] {
   padding: 5px;
   margin: 5px 0;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border-color);
   border-radius: 4px;
 }
 
@@ -80,19 +94,18 @@ input.value-input {
 }
 
 a {
-  color: #33bdeb; /* Accent color */
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #4463ee; /* Primary color */
+  color: var(--primary-color);
 }
 
 code {
   font-family: Consolas, "courier new";
-  color: #4463ee; /* Primary color */
-  /* background-color: #f1f1f1; */
+  color: var(--primary-color);
   padding: 2px;
   font-size: 105%;
   word-wrap: break-word;
@@ -100,8 +113,8 @@ code {
 
 .info-paragraph {
   font-size: 14px;
-  color: #06070a; /* Updated text color */
-  background-color: #f8f8fc; /* Updated background color */
+  color: var(--text-color);
+  background-color: var(--background-color);
   padding: 10px;
   border-radius: 5px;
 }
@@ -113,7 +126,7 @@ code {
 }
 
 .container {
-  background-color: #ffffff; /* Updated div background color */
+  background-color: var(--container-background);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -121,23 +134,23 @@ code {
 
 th:nth-child(1),
 td:nth-child(1) {
-  width: 20%; /* Name column */
+  width: 20%;
 }
 
 th:nth-child(2),
 td:nth-child(2) {
-  width: auto; /* URL/Recipe column */
+  width: auto;
 }
 
 th:nth-child(3),
 td:nth-child(3) {
-  width: 10%; /* Action column */
-  white-space: nowrap; /* Prevent wrapping */
+  width: 10%;
+  white-space: nowrap;
 }
 
 #cyberchefUrl {
-  width: 100%; /* Make it take the full width of its container */
-  max-width: 600px; /* Optional: Set a maximum width */
+  width: 100%;
+  max-width: 600px;
   padding: 5px;
-  box-sizing: border-box; /* Ensure padding is included in the width */
+  box-sizing: border-box;
 }

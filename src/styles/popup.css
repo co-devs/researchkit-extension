@@ -1,15 +1,30 @@
+:root {
+  --background-color: #f8f8fc;
+  --text-color: #06070a;
+  --container-background: #ffffff;
+  --primary-color: #4463ee;
+  --secondary-color: #793fee;
+  --accent-color: #33bdeb;
+  --table-header-background: #f2f2f2;
+  --table-row-even-background: #f9f9f9;
+  --table-row-hover-background: #f1f1f1;
+  --border-color: #ddd;
+  --input-border-color: #ccc;
+}
+
 body {
   font-family: Arial, sans-serif;
   width: 300px;
   padding: 10px;
-  background-color: #f8f8fc;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
 }
 
 h1,
 h2,
 h3 {
-  color: #06070a;
+  color: var(--text-color);
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -23,7 +38,7 @@ ul {
 li {
   margin-bottom: 5px; /* Reduced gap */
   padding: 10px;
-  background-color: white;
+  background-color: var(--container-background);
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -32,7 +47,7 @@ li {
 }
 
 button {
-  background-color: #4463ee;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 5px 10px;
@@ -41,18 +56,18 @@ button {
 }
 
 button:hover {
-  background-color: #4463ee;
+  background-color: var(--secondary-color);
 }
 
 a {
   display: block;
   margin-top: 20px;
   text-align: center;
-  color: #4463ee;
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #793fee;
+  color: var(--primary-color);
 }
