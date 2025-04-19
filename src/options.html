@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ResearchKit Options</title>
     <script defer src="scripts/options.js"></script>
-    <link rel="stylesheet" href="styles/options.css" />
+    <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/options.css" />
   </head>
   <body>
     <div class="container">
@@ -88,10 +89,21 @@
           <button id="resetCyberchefUrl">Reset to Default</button>
         </div>
         <h3>Import / Export Settings</h3>
+        <p class="info-paragraph">
+          Export your current configuration or import a new one. The imported file
+          should be in JSON format.
         <div class="inline-container">
           <button id="exportData">Export Configuration</button>
           <input type="file" id="importFile" accept="application/json" style="display: none;" />
           <button id="importData">Import Lookups & Recipes</button>
+        </div>
+        <h3>Dark Mode</h3>
+        <div class="inline-container">
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="slider round"></span>
+          </label>
+          <p>Enable Dark Mode</p>
         </div>
       </div>
     </div>

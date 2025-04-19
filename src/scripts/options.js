@@ -336,4 +336,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Show the URLs section by default
   showUrls();
+
+  const darkModeToggle = document.getElementById("darkModeToggle");
+
+  // Load the saved dark mode preference
+  chrome.storage.local.get("darkMode", (data) => {
+    if (data.darkMode) {
+      document.body.classList.add("dark-mode");
+      darkModeToggle.checked = true;
+    }
+  });
+
+  // Toggle dark mode and save the preference
+  darkModeToggle.addEventListener("change", () => {
+    const isDarkMode = darkModeToggle.checked;
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    chrome.storage.local.set({ darkMode: isDarkMode });
+
+    // Notify the popup to update its dark mode
+    chrome.runtime.sendMessage({ action: "toggleDarkMode", darkMode: isDarkMode });
+  });
 });
