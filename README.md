@@ -45,25 +45,23 @@ ResearchKit is a customizable extension meant to streamline research workflows. 
 
 ### Options Page
 
-![Options Page](images/options_screenshot.png)
+![](images/options_urls_screenshot.png)
 
-_Options page where you can add and manage URLs and recipes._
+_Saved lookups / URLs_
 
-![Drag and Drop](images/drag_and_drop_screenshot.png)
+![](images/options_recipes_screenshot)
 
-_Drag and drop to reorder._
+_Saved CyberChef recipes_
+
+![Options Page](images/options_advanced_settings_screenshot.png)
+
+_Advanced options page_
 
 ### Context Menu
 
 ![Context Menu](images/context_menu_screenshot.png)
 
 _Context menu showing saved URLs and recipes._
-
-### Popup
-
-![Popup](images/popup_screenshot.png)
-
-_Popup displaying saved URLs and recipes._
 
 ## TODO
 
