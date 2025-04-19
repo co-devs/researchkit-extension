@@ -68,22 +68,25 @@
         </tr>
       </table>
 
-      <h3>CyberChef URL</h3>
-      <p class="info-paragraph">
-        Set the URL for CyberChef. You can reset it to the default value if
-        needed.
-      </p>
-      <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
-      <button id="saveCyberchefUrl">Save</button>
-      <button id="resetCyberchefUrl">Reset to Default</button>
-
-      <div class="inline-container">
-        <button id="exportData">Export Configuration</button>
-      </div>
-      <div class="inline-container">
-        <input type="file" id="importFile" accept="application/json" style="display: none;" />
-        <button id="importData">Import Lookups & Recipes</button>
-      </div>
+      <details>
+        <h3>CyberChef URL</h3>
+        <summary>Advanced Settings</summary>
+        <div class="advanced-settings">
+          <p class="info-paragraph">
+            Set the URL for CyberChef. You can reset it to the default value if needed.
+          </p>
+          <div class="inline-container"></div>
+            <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
+            <button id="saveCyberchefUrl">Save</button>
+            <button id="resetCyberchefUrl">Reset to Default</button>
+          </div>
+          <div class="inline-container">
+            <button id="exportData">Export Configuration</button>
+            <input type="file" id="importFile" accept="application/json" style="display: none;" />
+            <button id="importData">Import Lookups & Recipes</button>
+          </div>
+        </div>
+      </details>
     </div>
   </body>
 </html>

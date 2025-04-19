@@ -2,14 +2,14 @@ body {
   font-family: Arial, sans-serif;
   width: 300px;
   padding: 10px;
-  background-color: #f4f4f9;
+  background-color: #f8f8fc;
   margin: 0;
 }
 
 h1,
 h2,
 h3 {
-  color: #333;
+  color: #06070a;
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -32,7 +32,7 @@ li {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #4463ee;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -41,18 +41,18 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #4463ee;
 }
 
 a {
   display: block;
   margin-top: 20px;
   text-align: center;
-  color: #4caf50;
+  color: #4463ee;
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #45a049;
+  color: #793fee;
 }

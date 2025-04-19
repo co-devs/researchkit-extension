@@ -1,13 +1,14 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  background-color: #f8f8fc; /* Updated background color */
+  color: #06070a; /* Updated text color */
   margin: 0;
   padding: 20px;
 }
 
 h1,
 h2 {
-  color: #333;
+  color: #06070a; /* Updated text color */
 }
 
 h1 {
@@ -49,17 +50,17 @@ tr:hover {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #4463ee; /* Primary color */
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 4px;
-  white-space: nowrap; /* Ensure text does not wrap */
+  white-space: nowrap;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #793fee; /* Secondary color */
 }
 
 input[type="text"] {
@@ -78,10 +79,20 @@ input.value-input {
   width: calc(67% - 10px);
 }
 
+a {
+  color: #33bdeb; /* Accent color */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #4463ee; /* Primary color */
+}
+
 code {
   font-family: Consolas, "courier new";
-  color: #347736;
-  background-color: #f1f1f1;
+  color: #4463ee; /* Primary color */
+  /* background-color: #f1f1f1; */
   padding: 2px;
   font-size: 105%;
   word-wrap: break-word;
@@ -89,11 +100,8 @@ code {
 
 .info-paragraph {
   font-size: 14px;
-  color: #555;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  line-height: 1.5;
-  background-color: #f9f9f9;
+  color: #06070a; /* Updated text color */
+  background-color: #f8f8fc; /* Updated background color */
   padding: 10px;
   border-radius: 5px;
 }
@@ -105,7 +113,7 @@ code {
 }
 
 .container {
-  background-color: white;
+  background-color: #ffffff; /* Updated div background color */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -125,4 +133,11 @@ th:nth-child(3),
 td:nth-child(3) {
   width: 10%; /* Action column */
   white-space: nowrap; /* Prevent wrapping */
+}
+
+#cyberchefUrl {
+  width: 100%; /* Make it take the full width of its container */
+  max-width: 600px; /* Optional: Set a maximum width */
+  padding: 5px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
