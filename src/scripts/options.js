@@ -227,9 +227,11 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
       const exportData = {
         savedUrls: data.savedUrls || [],
-        savedRecipes: data.savedRecipes || []
+        savedRecipes: data.savedRecipes || [],
       };
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+        type: "application/json",
+      });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -251,15 +253,27 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.onload = (e) => {
           try {
             const importedData = JSON.parse(e.target.result);
-            chrome.storage.local.get(["savedUrls", "savedRecipes"], (currentData) => {
-              const mergedUrls = [...(currentData.savedUrls || []), ...(importedData.savedUrls || [])];
-              const mergedRecipes = [...(currentData.savedRecipes || []), ...(importedData.savedRecipes || [])];
+            chrome.storage.local.get(
+              ["savedUrls", "savedRecipes"],
+              (currentData) => {
+                const mergedUrls = [
+                  ...(currentData.savedUrls || []),
+                  ...(importedData.savedUrls || []),
+                ];
+                const mergedRecipes = [
+                  ...(currentData.savedRecipes || []),
+                  ...(importedData.savedRecipes || []),
+                ];
 
-              chrome.storage.local.set({ savedUrls: mergedUrls, savedRecipes: mergedRecipes }, () => {
-                alert("Data imported successfully.");
-                loadOptions();
-              });
-            });
+                chrome.storage.local.set(
+                  { savedUrls: mergedUrls, savedRecipes: mergedRecipes },
+                  () => {
+                    alert("Data imported successfully.");
+                    loadOptions();
+                  }
+                );
+              }
+            );
           } catch (error) {
             alert("Invalid JSON file.");
           }
@@ -308,10 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Section toggling logic for URLs, Recipes, and Advanced Settings
   const urlsSection = document.getElementById("urlsSection");
   const recipesSection = document.getElementById("recipesSection");
-  const advancedSettingsSection = document.getElementById("advancedSettingsSection");
+  const advancedSettingsSection = document.getElementById(
+    "advancedSettingsSection"
+  );
   const showUrlsButton = document.getElementById("showUrls");
   const showRecipesButton = document.getElementById("showRecipes");
-  const showAdvancedSettingsButton = document.getElementById("showAdvancedSettings");
+  const showAdvancedSettingsButton = document.getElementById(
+    "showAdvancedSettings"
+  );
 
   // Function to show the URLs section and hide others
   function showUrls() {
@@ -360,6 +378,9 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.set({ darkMode: isDarkMode });
 
     // Notify the popup to update its dark mode
-    chrome.runtime.sendMessage({ action: "toggleDarkMode", darkMode: isDarkMode });
+    chrome.runtime.sendMessage({
+      action: "toggleDarkMode",
+      darkMode: isDarkMode,
+    });
   });
 });
