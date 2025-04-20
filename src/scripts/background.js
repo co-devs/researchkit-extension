@@ -88,8 +88,17 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           // Encode the selected text and replace the placeholder in the URL
           let encodedText = encodeURIComponent(info.selectionText);
           let finalUrl = selectedItem.url.replace("{placeholder}", encodedText);
-          // Open the final URL in a new tab
-          chrome.tabs.create({ url: finalUrl });
+          // Open the final URL in a new tab or notify the user if the URL is invalid
+          if (finalUrl.startsWith('http://') || finalUrl.startsWith('https://')) {
+            chrome.tabs.create({ url: finalUrl });
+          } else {
+            chrome.notifications.create({
+              type: 'basic',
+              iconUrl: 'icon.png',
+              title: 'Blocked URL',
+              message: 'Only http(s) URLs are allowed.'
+            });
+          }
         }
       } else if (info.menuItemId.startsWith("recipe-")) {
         // Handle Recipe context menu item clicks
@@ -103,8 +112,17 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           let finalUrl = cyberchefUrl
             .replace("${recipe}", selectedItem.recipe)
             .replace("${encodedText}", encodedText);
-          // Open the final URL in a new tab
-          chrome.tabs.create({ url: finalUrl });
+          // Open the final URL in a new tab or notify the user if the URL is invalid
+          if (finalUrl.startsWith('http://') || finalUrl.startsWith('https://')) {
+            chrome.tabs.create({ url: finalUrl });
+          } else {
+            chrome.notifications.create({
+              type: 'basic',
+              iconUrl: 'icon.png',
+              title: 'Blocked URL',
+              message: 'Only http(s) URLs are allowed.'
+            });
+          }
         }
       }
     }
