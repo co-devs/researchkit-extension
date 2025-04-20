@@ -1,3 +1,4 @@
+// Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", () => {
   const urlList = document.getElementById("urlList");
   const recipeList = document.getElementById("recipeList");
@@ -22,17 +23,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-    // Load the saved dark mode preference
-    chrome.storage.local.get("darkMode", (data) => {
-      if (data.darkMode) {
-        document.body.classList.add("dark-mode");
-      }
+  // Load the saved dark mode preference and apply it to the popup
+  chrome.storage.local.get("darkMode", (data) => {
+    if (data.darkMode) {
+      document.body.classList.add("dark-mode");
+    }
+  });
+
+  // Listen for messages from other parts of the extension
+  // For example, this listens for updates to the dark mode preference
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.action === "toggleDarkMode") {
+      document.body.classList.toggle("dark-mode", message.darkMode);
+    }
+  });
+
+  // Example: Add event listeners for popup-specific actions
+  // (Add your popup-specific logic here if needed)
+
+  // Example: Handle button clicks in the popup
+  const exampleButton = document.getElementById("exampleButton");
+  if (exampleButton) {
+    exampleButton.addEventListener("click", () => {
+      alert("Button clicked!");
     });
-  
-    // Listen for changes to the dark mode preference
-    chrome.runtime.onMessage.addListener((message) => {
-      if (message.action === "toggleDarkMode") {
-        document.body.classList.toggle("dark-mode", message.darkMode);
-      }
-    });
+  }
 });

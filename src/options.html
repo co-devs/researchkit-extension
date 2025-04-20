@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ResearchKit Options</title>
-    <script defer src="scripts/options.js"></script>
-    <link rel="stylesheet" href="styles/variables.css" />
-  <link rel="stylesheet" href="styles/options.css" />
+        <script defer src="scripts/options.js"></script>
+        <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/options.css" />
   </head>
   <body>
     <div class="container">
@@ -28,6 +28,7 @@
           (<code>https://google.com/search?q={placeholder}</code>).
         </p>
         <div class="inline-container">
+          <!-- Input fields for adding a new URL -->
           <input type="text" id="urlName" class="name-input" placeholder="Name" />
           <input
             type="text"
@@ -37,6 +38,7 @@
           />
           <button id="addUrl">Add URL</button>
         </div>
+        <!-- Table to display saved URLs -->
         <table id="urlTable">
           <tr>
             <!-- Table rows will be dynamically added -->
@@ -56,6 +58,7 @@
           copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
         </p>
         <div class="inline-container">
+          <!-- Input fields for adding a new recipe -->
           <input
             type="text"
             id="recipeName"
@@ -70,6 +73,7 @@
           />
           <button id="addRecipe">Add Recipe</button>
         </div>
+        <!-- Table to display saved recipes -->
         <table id="recipeTable">
           <tr>
             <!-- Table rows will be dynamically added -->
@@ -77,8 +81,11 @@
         </table>
       </div>
 
+      <!-- Advanced Settings Section -->
       <div id="advancedSettingsSection" class="section">
         <h2>Advanced Settings</h2>
+
+        <!-- CyberChef URL Configuration -->
         <h3>CyberChef URL</h3>
         <p class="info-paragraph">
           Set the URL for CyberChef. You can reset it to the default value if needed.
@@ -88,15 +95,20 @@
           <button id="saveCyberchefUrl">Save</button>
           <button id="resetCyberchefUrl">Reset to Default</button>
         </div>
+
+        <!-- Import / Export Settings -->
         <h3>Import / Export Settings</h3>
         <p class="info-paragraph">
           Export your current configuration or import a new one. The imported file
           should be in JSON format.
+        </p>
         <div class="inline-container">
           <button id="exportData">Export Configuration</button>
           <input type="file" id="importFile" accept="application/json" style="display: none;" />
           <button id="importData">Import Lookups & Recipes</button>
         </div>
+
+        <!-- Dark Mode Toggle -->
         <h3>Dark Mode</h3>
         <div class="inline-container">
           <label class="switch">
