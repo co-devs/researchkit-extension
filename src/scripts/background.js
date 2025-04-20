@@ -1,9 +1,11 @@
 // Listener for when the extension is installed or updated
+// This ensures the context menu is created when the extension is first installed or updated
 chrome.runtime.onInstalled.addListener(() => {
   createContextMenu();
 });
 
 // Listener for messages sent from other parts of the extension
+// For example, this listens for a message to update the context menu
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "updateContextMenu") {
     createContextMenu();
@@ -12,13 +14,13 @@ chrome.runtime.onMessage.addListener((message) => {
 
 // Function to create the context menu
 function createContextMenu() {
-  // Remove all existing context menu items
+  // Remove all existing context menu items to avoid duplicates
   chrome.contextMenus.removeAll(() => {
     // Create the main context menu item
     chrome.contextMenus.create({
       id: "queries",
       title: "Queries",
-      contexts: ["selection"],
+      contexts: ["selection"], // Only show this menu when text is selected
     });
 
     // Create parent context menu items for URLs and Recipes
@@ -36,7 +38,7 @@ function createContextMenu() {
       contexts: ["selection"],
     });
 
-    // Retrieve saved URLs from local storage
+    // Retrieve saved URLs and recipes from local storage
     chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
       let urls = data.savedUrls || [];
       let recipes = data.savedRecipes || [];
@@ -66,7 +68,7 @@ function createContextMenu() {
 
 // Listener for when a context menu item is clicked
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  // Retrieve saved URLs and recipes from local storage
+  // Retrieve saved URLs, recipes, and the CyberChef URL from local storage
   chrome.storage.local.get(
     ["savedUrls", "savedRecipes", "cyberchefUrl"],
     (data) => {
@@ -77,6 +79,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         "https://gchq.github.io/CyberChef/#recipe=${recipe}&input=${encodedText}";
 
       if (info.menuItemId.startsWith("url-")) {
+        // Handle URL context menu item clicks
         // Find the selected URL item
         let selectedItem = urls.find(
           (item) => `url-${item.id}` === info.menuItemId
@@ -89,6 +92,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           chrome.tabs.create({ url: finalUrl });
         }
       } else if (info.menuItemId.startsWith("recipe-")) {
+        // Handle Recipe context menu item clicks
         // Find the selected recipe item
         let selectedItem = recipes.find(
           (item) => `recipe-${item.id}` === info.menuItemId

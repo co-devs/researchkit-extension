@@ -1,5 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
+  /* Apply global styles to the body */
+  font-family: Arial, sans-serif; /* Set default font */
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
@@ -12,29 +13,29 @@ h2 {
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 24px; /* Larger font size for main headings */
+  margin-bottom: 20px; /* Add spacing below the heading */
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 20px; /* Slightly smaller font size for subheadings */
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  table-layout: fixed;
+  width: 100%; /* Make tables take full width */
+  border-collapse: collapse; /* Remove gaps between table cells */
+  margin-bottom: 20px; /* Add spacing below the table */
+  table-layout: fixed; /* Fix table layout for consistent column widths */
 }
 
 th,
 td {
   border: 1px solid var(--border-color);
-  padding: 8px;
-  text-align: left;
-  word-wrap: break-word;
+  padding: 8px; /* Add padding inside cells */
+  text-align: left; /* Align text to the left */
+  word-wrap: break-word; /* Allow text to wrap within cells */
 }
 
 th {
@@ -51,12 +52,12 @@ tr:hover {
 
 button {
   background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  white-space: nowrap;
+  color: white; /* Set text color to white */
+  border: none; /* Remove default border */
+  padding: 5px 10px; /* Add padding inside buttons */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 4px; /* Add rounded corners */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 button:hover {
@@ -64,98 +65,98 @@ button:hover {
 }
 
 input[type="text"] {
-  padding: 5px;
-  margin: 5px 0;
-  box-sizing: border-box;
+  padding: 5px; /* Add padding inside input fields */
+  margin: 5px 0; /* Add spacing around input fields */
+  box-sizing: border-box; /* Include padding and border in width calculation */
   border: 1px solid var(--input-border-color);
-  border-radius: 4px;
+  border-radius: 4px; /* Add rounded corners */
   background-color: var(--container-background);
   color: var(--text-color);
 }
 
 input.name-input {
-  width: calc(33% - 10px);
+  width: calc(33% - 10px); /* Set width for name input fields */
 }
 
 input.value-input {
-  width: calc(67% - 10px);
+  width: calc(67% - 10px); /* Set width for value input fields */
 }
 
 a {
   color: var(--accent-color);
-  text-decoration: none;
-  font-weight: bold;
+  text-decoration: none; /* Remove underline from links */
+  font-weight: bold; /* Make links bold */
 }
 
 a:hover {
-  color: var(--primary-color);
+  color: var(--primary-color); /* Use primary color variable for hover */
 }
 
 code {
-  font: 12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+  font: 12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace; /* Use monospace font */
   color: var(--accent-color);
-  padding: 2px;
-  font-size: 105%;
-  word-wrap: break-word;
+  padding: 2px; /* Add padding around code */
+  font-size: 105%; /* Slightly increase font size */
+  word-wrap: break-word; /* Allow text to wrap within code blocks */
 }
 
 .info-paragraph {
-  font-size: 14px;
+  font-size: 14px; /* Set font size */
   color: var(--text-color);
   background-color: var(--background-color);
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px; /* Add padding inside paragraphs */
+  border-radius: 5px; /* Add rounded corners */
 }
 
 .inline-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+  gap: 10px; /* Add spacing between items */
 }
 
 .container {
   background-color: var(--container-background);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Add padding inside containers */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
 th:nth-child(1),
 td:nth-child(1) {
-  width: 20%;
+  width: 20%; /* Set width for the first column */
 }
 
 th:nth-child(2),
 td:nth-child(2) {
-  width: auto;
+  width: auto; /* Allow the second column to take remaining space */
 }
 
 th:nth-child(3),
 td:nth-child(3) {
-  width: 10%;
-  white-space: nowrap;
+  width: 10%; /* Set width for the third column */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 #cyberchefUrl {
-  width: 100%;
-  max-width: 600px;
-  padding: 5px;
-  box-sizing: border-box;
+  width: 100%; /* Make the input field take full width */
+  max-width: 600px; /* Set a maximum width */
+  padding: 5px; /* Add padding inside the input field */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .menu {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  display: flex; /* Use flexbox for layout */
+  gap: 10px; /* Add spacing between menu items */
+  margin-bottom: 20px; /* Add spacing below the menu */
 }
 
 .menu button {
   background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 4px;
+  /* color: var(--container-background); */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Add padding inside buttons */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 4px; /* Add rounded corners */
 }
 
 .menu button:hover {
@@ -194,42 +195,42 @@ td:nth-child(3) {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: var(--input-border-color); /* Default slider background color */
+  -webkit-transition: .4s; /* Smooth transition for slider */
+  transition: .4s; /* Smooth transition for slider */
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  height: 26px; /* Height of the slider knob */
+  width: 26px; /* Width of the slider knob */
+  left: 4px; /* Position of the slider knob */
+  bottom: 4px; /* Position of the slider knob */
+  background-color: var(--container-background); /* Slider knob color */
+  -webkit-transition: .4s; /* Smooth transition for slider knob */
+  transition: .4s; /* Smooth transition for slider knob */
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--accent-color); /* Slider background color when checked */
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--accent-color); /* Add focus shadow to slider */
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(26px); /* Move slider knob when checked */
+  -ms-transform: translateX(26px); /* Move slider knob when checked */
+  transform: translateX(26px); /* Move slider knob when checked */
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 34px; /* Make slider rounded */
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 50%; /* Make slider knob rounded */
 }

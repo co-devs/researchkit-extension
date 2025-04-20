@@ -1,6 +1,6 @@
 // Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", () => {
-  // Get the urlTable and recipeTable elements from options.html
+  // Get references to HTML elements for URLs, Recipes, and CyberChef settings
   const urlTable = document.getElementById("urlTable");
   const recipeTable = document.getElementById("recipeTable");
 
@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let savedUrls = [];
   let savedRecipes = [];
 
-  // Load the saved CyberChef URL from storage
+  // Load the saved CyberChef URL from storage and populate the input field
   chrome.storage.local.get("cyberchefUrl", (data) => {
     if (data.cyberchefUrl) {
       cyberchefUrlInput.value = data.cyberchefUrl;
     }
   });
 
-  // Save the CyberChef URL to storage
+  // Save the CyberChef URL to storage when the save button is clicked
   saveButton.addEventListener("click", () => {
     const cyberchefUrl = cyberchefUrlInput.value;
     chrome.storage.local.set({ cyberchefUrl }, () => {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Reset the CyberChef URL to the default value
+  // Reset the CyberChef URL to the default value when the reset button is clicked
   resetButton.addEventListener("click", () => {
     cyberchefUrlInput.value = defaultCyberchefUrl;
     chrome.storage.local.set({ cyberchefUrl: defaultCyberchefUrl }, () => {
@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Function to load saved options from chrome storage and display them
+  // Function to load saved URLs and Recipes from storage and display them in tables
   function loadOptions() {
     chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
       savedUrls = data.savedUrls || [];
       savedRecipes = data.savedRecipes || [];
 
-      // Clear the current list
+      // Clear the current table content
       if (urlTable) {
         urlTable.innerHTML =
           "<tr><th>Name</th><th>URL</th><th>Action</th></tr>";
@@ -60,14 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
         recipeTable.innerHTML =
           "<tr><th>Name</th><th>Recipe</th><th>Action</th></tr>";
       }
-      // Iterate over saved URLs and create table rows for each
+
+      // Populate the URL table with saved URLs
       savedUrls.forEach((item, index) => {
         let tr = createUrlRow(item, index);
         if (urlTable) {
           urlTable.appendChild(tr);
         }
       });
-      // Iterate over saved Recipes and create table rows for each
+
+      // Populate the Recipe table with saved Recipes
       savedRecipes.forEach((item, index) => {
         let tr = createRecipeRow(item, index);
         if (recipeTable) {
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Function to create a table row element for a given URL
+  // Function to create a table row for a saved URL
   function createUrlRow(item, index) {
     let tr = document.createElement("tr");
     tr.draggable = true;
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tr.innerHTML = `<td>${item.name}</td><td><code>${item.url}</code></td>`;
     let actionTd = document.createElement("td");
 
+    // Add a remove button to the row
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.onclick = () => removeUrlItem(index);
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return tr;
   }
 
-  // Function to create a table row element for a given Recipe
+  // Function to create a table row for a saved Recipe
   function createRecipeRow(item, index) {
     let tr = document.createElement("tr");
     tr.draggable = true;
@@ -105,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tr.innerHTML = `<td>${item.name}</td><td><code>${item.recipe}</code></td>`;
     let actionTd = document.createElement("td");
 
+    // Add a remove button to the row
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.onclick = () => removeRecipeItem(index);
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return tr;
   }
 
-  // Function to add drag and drop handlers to a table row
+  // Function to add drag-and-drop handlers to a table row
   function addDragAndDropHandlers(row) {
     row.addEventListener("dragstart", handleDragStart);
     row.addEventListener("dragover", handleDragOver);
@@ -124,16 +128,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let draggedRow = null;
 
+  // Handle the start of a drag event
   function handleDragStart(event) {
     draggedRow = event.target;
     event.dataTransfer.effectAllowed = "move";
   }
 
+  // Handle the drag-over event
   function handleDragOver(event) {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }
 
+  // Handle the drop event
   function handleDrop(event) {
     event.preventDefault();
     if (
@@ -152,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Update the order of URLs and Recipes after a drag-and-drop operation
   function updateOrder() {
     let urlRows = Array.from(urlTable.querySelectorAll("tr")).slice(1);
     let recipeRows = Array.from(recipeTable.querySelectorAll("tr")).slice(1);
@@ -174,21 +182,21 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Function to remove an item from the saved URLs
+  // Function to remove a URL from the saved list
   function removeUrlItem(index) {
     savedUrls.splice(index, 1);
     chrome.storage.local.set({ savedUrls }, loadOptions);
     chrome.runtime.sendMessage({ action: "updateContextMenu" });
   }
 
-  // Function to remove an item from the saved Recipes
+  // Function to remove a Recipe from the saved list
   function removeRecipeItem(index) {
     savedRecipes.splice(index, 1);
     chrome.storage.local.set({ savedRecipes }, loadOptions);
     chrome.runtime.sendMessage({ action: "updateContextMenu" });
   }
 
-  // Function to add a new URL
+  // Function to add a new URL to the saved list
   function addUrl() {
     let name = urlNameInput.value.trim();
     let url = urlValueInput.value.trim();
@@ -201,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Function to add a new Recipe
+  // Function to add a new Recipe to the saved list
   function addRecipe() {
     let name = recipeNameInput.value.trim();
     let recipe = recipeValueInput.value.trim();
@@ -214,14 +222,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Function to export saved lookups and recipes to a JSON file
+  // Function to export saved URLs and Recipes to a JSON file
   function exportData() {
     chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
       const exportData = {
         savedUrls: data.savedUrls || [],
-        savedRecipes: data.savedRecipes || []
+        savedRecipes: data.savedRecipes || [],
       };
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+        type: "application/json",
+      });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -231,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Function to import lookups and recipes from a JSON file
+  // Function to import URLs and Recipes from a JSON file
   function importData(event) {
     const fileInput = document.getElementById("importFile");
     fileInput.click();
@@ -243,15 +253,27 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.onload = (e) => {
           try {
             const importedData = JSON.parse(e.target.result);
-            chrome.storage.local.get(["savedUrls", "savedRecipes"], (currentData) => {
-              const mergedUrls = [...(currentData.savedUrls || []), ...(importedData.savedUrls || [])];
-              const mergedRecipes = [...(currentData.savedRecipes || []), ...(importedData.savedRecipes || [])];
+            chrome.storage.local.get(
+              ["savedUrls", "savedRecipes"],
+              (currentData) => {
+                const mergedUrls = [
+                  ...(currentData.savedUrls || []),
+                  ...(importedData.savedUrls || []),
+                ];
+                const mergedRecipes = [
+                  ...(currentData.savedRecipes || []),
+                  ...(importedData.savedRecipes || []),
+                ];
 
-              chrome.storage.local.set({ savedUrls: mergedUrls, savedRecipes: mergedRecipes }, () => {
-                alert("Data imported successfully.");
-                loadOptions();
-              });
-            });
+                chrome.storage.local.set(
+                  { savedUrls: mergedUrls, savedRecipes: mergedRecipes },
+                  () => {
+                    alert("Data imported successfully.");
+                    loadOptions();
+                  }
+                );
+              }
+            );
           } catch (error) {
             alert("Invalid JSON file.");
           }
@@ -261,13 +283,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Set up the add URL button to save a new URL when clicked
+  // Set up event listeners for adding URLs and Recipes
   addUrlButton.addEventListener("click", addUrl);
-
-  // Set up the add Recipe button to save a new Recipe when clicked
   addRecipeButton.addEventListener("click", addRecipe);
 
-  // Add event listeners to handle pressing the enter key
+  // Add event listeners to handle pressing the Enter key for inputs
   urlNameInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       addUrl();
@@ -292,44 +312,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add event listener to the export button
+  // Add event listeners for exporting and importing data
   document.getElementById("exportData").addEventListener("click", exportData);
-
-  // Add event listener to the import button
   document.getElementById("importData").addEventListener("click", importData);
 
   // Load the saved options when the page is loaded
   loadOptions();
 
+  // Section toggling logic for URLs, Recipes, and Advanced Settings
   const urlsSection = document.getElementById("urlsSection");
   const recipesSection = document.getElementById("recipesSection");
-  const advancedSettingsSection = document.getElementById("advancedSettingsSection");
+  const advancedSettingsSection = document.getElementById(
+    "advancedSettingsSection"
+  );
   const showUrlsButton = document.getElementById("showUrls");
   const showRecipesButton = document.getElementById("showRecipes");
-  const showAdvancedSettingsButton = document.getElementById("showAdvancedSettings");
+  const showAdvancedSettingsButton = document.getElementById(
+    "showAdvancedSettings"
+  );
 
-  // Function to show the URLs section and hide the Recipes and Advanced Settings sections
+  // Function to show the URLs section and hide others
   function showUrls() {
     urlsSection.classList.add("active");
     recipesSection.classList.remove("active");
     advancedSettingsSection.classList.remove("active");
   }
 
-  // Function to show the Recipes section and hide the URLs and Advanced Settings sections
+  // Function to show the Recipes section and hide others
   function showRecipes() {
     recipesSection.classList.add("active");
     urlsSection.classList.remove("active");
     advancedSettingsSection.classList.remove("active");
   }
 
-  // Function to show the Advanced Settings section and hide the URLs and Recipes sections
+  // Function to show the Advanced Settings section and hide others
   function showAdvancedSettings() {
     advancedSettingsSection.classList.add("active");
     urlsSection.classList.remove("active");
     recipesSection.classList.remove("active");
   }
 
-  // Add event listeners to the menu buttons
+  // Add event listeners to the menu buttons for section toggling
   showUrlsButton.addEventListener("click", showUrls);
   showRecipesButton.addEventListener("click", showRecipes);
   showAdvancedSettingsButton.addEventListener("click", showAdvancedSettings);
@@ -337,9 +360,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Show the URLs section by default
   showUrls();
 
+  // Dark mode toggle logic
   const darkModeToggle = document.getElementById("darkModeToggle");
 
-  // Load the saved dark mode preference
+  // Load the saved dark mode preference and apply it
   chrome.storage.local.get("darkMode", (data) => {
     if (data.darkMode) {
       document.body.classList.add("dark-mode");
@@ -354,6 +378,9 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.set({ darkMode: isDarkMode });
 
     // Notify the popup to update its dark mode
-    chrome.runtime.sendMessage({ action: "toggleDarkMode", darkMode: isDarkMode });
+    chrome.runtime.sendMessage({
+      action: "toggleDarkMode",
+      darkMode: isDarkMode,
+    });
   });
 });
