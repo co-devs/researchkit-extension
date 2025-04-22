@@ -256,6 +256,8 @@ input:checked + .slider:before {
   width: 80%;
   max-width: 500px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .close {
@@ -289,7 +291,9 @@ input:checked + .slider:before {
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 4px;
-  float: right;
+  align-self: flex-end;
+  margin-top: 10px;
+  box-sizing: border-box;
 }
 
 #saveNote:hover {
