@@ -70,9 +70,9 @@ jobs:
 
       - name: Upload step
         run: |-
-          chrome-webstore-upload-cli \\
-            --zip ./chrome-extension-${{ github.sha }}.zip \\
-            -extension-id ${{ secrets.CI_EXTENSION_ID}} \\
+          chrome-webstore-upload upload \\
+            --source ./chrome-extension-${{ github.sha }}.zip \\
+            --extension-id ${{ secrets.CI_EXTENSION_ID}} \\
             --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
             --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
             --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }} > upload.log 2>&1 || (cat upload.log && exit 1)
