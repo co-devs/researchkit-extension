@@ -61,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
       savedUrls = data.savedUrls || [];
       savedRecipes = data.savedRecipes || [];
 
-      // Clear the current table content
+      // Clear the current table content and add headers including the drag handle column
       if (urlTable) {
         urlTable.innerHTML =
-          "<tr><th>Name</th><th>URL</th><th>Action</th></tr>";
+          "<tr><th></th><th>Name</th><th>URL</th><th>Action</th></tr>"; // Added empty header for drag handle
       }
       if (recipeTable) {
         recipeTable.innerHTML =
-          "<tr><th>Name</th><th>Recipe</th><th>Action</th></tr>";
+          "<tr><th></th><th>Name</th><th>Recipe</th><th>Action</th></tr>"; // Added empty header for drag handle
       }
 
       // Populate the URL table with saved URLs
@@ -96,8 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
     tr.dataset.index = index;
     tr.dataset.type = "url";
     tr.dataset.id = item.id;
+
+    // Create drag handle cell (first column)
+    let dragHandleTd = document.createElement("td");
+    let dragHandle = document.createElement("span");
+    dragHandle.className = "drag-handle";
+    dragHandle.innerHTML = "⋮⋮";
+    dragHandle.title = "Drag to reorder";
+    dragHandleTd.appendChild(dragHandle);
     
-    // Create name cell with click handler for notes
+    // Create name cell with click handler for notes (second column)
     let nameTd = document.createElement("td");
     nameTd.className = "name-cell";
     nameTd.textContent = item.name;
@@ -118,15 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     codeElement.textContent = item.url;
     urlTd.appendChild(codeElement);
     
-    // Create actions cell
+    // Create actions cell (fourth column)
     let actionTd = document.createElement("td");
-    
-    // Add drag handle
-    let dragHandle = document.createElement("span");
-    dragHandle.className = "drag-handle";
-    dragHandle.innerHTML = "⋮⋮";
-    dragHandle.title = "Drag to reorder";
-    actionTd.appendChild(dragHandle);
     
     // Add a remove button
     let removeBtn = document.createElement("button");
@@ -134,10 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
     removeBtn.onclick = () => removeUrlItem(index);
     actionTd.appendChild(removeBtn);
     
-    // Append all cells to row
-    tr.appendChild(nameTd);
-    tr.appendChild(urlTd);
-    tr.appendChild(actionTd);
+    // Append all cells to row in the new order
+    tr.appendChild(dragHandleTd); // First column
+    tr.appendChild(nameTd);       // Second column
+    tr.appendChild(urlTd);        // Third column
+    tr.appendChild(actionTd);     // Fourth column
     
     addDragAndDropHandlers(tr);
     return tr;
@@ -150,8 +152,16 @@ document.addEventListener("DOMContentLoaded", () => {
     tr.dataset.index = index;
     tr.dataset.type = "recipe";
     tr.dataset.id = item.id;
+
+    // Create drag handle cell (first column)
+    let dragHandleTd = document.createElement("td");
+    let dragHandle = document.createElement("span");
+    dragHandle.className = "drag-handle";
+    dragHandle.innerHTML = "⋮⋮";
+    dragHandle.title = "Drag to reorder";
+    dragHandleTd.appendChild(dragHandle);
     
-    // Create name cell with click handler for notes
+    // Create name cell with click handler for notes (second column)
     let nameTd = document.createElement("td");
     nameTd.className = "name-cell";
     nameTd.textContent = item.name;
@@ -172,15 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
     codeElement.textContent = item.recipe;
     recipeTd.appendChild(codeElement);
     
-    // Create actions cell
+    // Create actions cell (fourth column)
     let actionTd = document.createElement("td");
-    
-    // Add drag handle
-    let dragHandle = document.createElement("span");
-    dragHandle.className = "drag-handle";
-    dragHandle.innerHTML = "⋮⋮";
-    dragHandle.title = "Drag to reorder";
-    actionTd.appendChild(dragHandle);
     
     // Add a remove button
     let removeBtn = document.createElement("button");
@@ -188,10 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
     removeBtn.onclick = () => removeRecipeItem(index);
     actionTd.appendChild(removeBtn);
     
-    // Append all cells to row
-    tr.appendChild(nameTd);
-    tr.appendChild(recipeTd);
-    tr.appendChild(actionTd);
+    // Append all cells to row in the new order
+    tr.appendChild(dragHandleTd); // First column
+    tr.appendChild(nameTd);       // Second column
+    tr.appendChild(recipeTd);     // Third column
+    tr.appendChild(actionTd);     // Fourth column
     
     addDragAndDropHandlers(tr);
     return tr;
@@ -491,8 +495,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to filter items based on search input
   function filterItems(table, query, items, rowCreator) {
-    // Clear the current table content
-    table.innerHTML = "<tr><th>Name</th><th>" + 
+    // Clear the current table content, including the drag handle header
+    table.innerHTML = "<tr><th></th><th>Name</th><th>" + 
                       (items === savedUrls ? "URL" : "Recipe") + 
                       "</th><th>Action</th></tr>";
 

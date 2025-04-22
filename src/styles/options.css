@@ -121,20 +121,27 @@ code {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
-th:nth-child(1),
+th:nth-child(1), /* Drag Handle */
 td:nth-child(1) {
-  width: 20%; /* Set width for the first column */
+  width: 3%;
+  text-align: center; /* Center the handle */
 }
 
-th:nth-child(2),
+th:nth-child(2), /* Name */
 td:nth-child(2) {
-  width: auto; /* Allow the second column to take remaining space */
+  width: 17%;
 }
 
-th:nth-child(3),
+th:nth-child(3), /* Value */
 td:nth-child(3) {
-  width: 10%; /* Set width for the third column */
-  white-space: nowrap; /* Prevent text wrapping */
+  width: 65%; /* Adjusted from 'auto' to a specific percentage */
+}
+
+th:nth-child(4), /* Actions */
+td:nth-child(4) {
+  width: 15%; /* Adjusted from 10% */
+  white-space: nowrap;
+  text-align: center; /* Center content in the actions column */
 }
 
 #cyberchefUrl {
@@ -304,8 +311,9 @@ input:checked + .slider:before {
 .note-icon, .drag-handle {
   cursor: pointer;
   display: inline-block;
-  margin-left: 8px;
+  /* margin-left: 8px; Removed */
   color: var(--accent-color);
+  vertical-align: middle; /* Align vertically */
 }
 
 .note-icon {
