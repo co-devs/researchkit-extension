@@ -1,7 +1,7 @@
 {
     "name": "ResearchKit",
     "description": "ResearchKit is a simple tool for researching and manipulating strings found in web pages",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "manifest_version": 3,
     "permissions": [
         "storage",
@@ -19,5 +19,8 @@
         "32": "images/icon-32.png",
         "48": "images/icon-48.png",
         "128": "images/icon-128.png"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
     }
 }
