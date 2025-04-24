@@ -104,13 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
     dragHandle.innerHTML = "⋮⋮";
     dragHandle.title = "Drag to reorder";
     dragHandleTd.appendChild(dragHandle);
-    
+
     // Create name cell with click handler for notes (second column)
     let nameTd = document.createElement("td");
     nameTd.className = "name-cell";
     nameTd.textContent = item.name;
     nameTd.onclick = () => openNoteModal(item, "url");
-    
+
     // Add note indicator if note exists
     if (item.note && item.note.trim() !== "") {
       let noteIcon = document.createElement("span");
@@ -119,28 +119,28 @@ document.addEventListener("DOMContentLoaded", () => {
       noteIcon.title = "Has note";
       nameTd.appendChild(noteIcon);
     }
-    
+
     // Create URL cell
     let urlTd = document.createElement("td");
     let codeElement = document.createElement("code");
     codeElement.textContent = item.url;
     urlTd.appendChild(codeElement);
-    
+
     // Create actions cell (fourth column)
     let actionTd = document.createElement("td");
-    
+
     // Add a remove button
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.onclick = () => removeUrlItem(index);
     actionTd.appendChild(removeBtn);
-    
+
     // Append all cells to row in the new order
     tr.appendChild(dragHandleTd); // First column
     tr.appendChild(nameTd);       // Second column
     tr.appendChild(urlTd);        // Third column
     tr.appendChild(actionTd);     // Fourth column
-    
+
     addDragAndDropHandlers(tr);
     return tr;
   }
@@ -160,13 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
     dragHandle.innerHTML = "⋮⋮";
     dragHandle.title = "Drag to reorder";
     dragHandleTd.appendChild(dragHandle);
-    
+
     // Create name cell with click handler for notes (second column)
     let nameTd = document.createElement("td");
     nameTd.className = "name-cell";
     nameTd.textContent = item.name;
     nameTd.onclick = () => openNoteModal(item, "recipe");
-    
+
     // Add note indicator if note exists
     if (item.note && item.note.trim() !== "") {
       let noteIcon = document.createElement("span");
@@ -175,28 +175,28 @@ document.addEventListener("DOMContentLoaded", () => {
       noteIcon.title = "Has note";
       nameTd.appendChild(noteIcon);
     }
-    
+
     // Create recipe cell
     let recipeTd = document.createElement("td");
     let codeElement = document.createElement("code");
     codeElement.textContent = item.recipe;
     recipeTd.appendChild(codeElement);
-    
+
     // Create actions cell (fourth column)
     let actionTd = document.createElement("td");
-    
+
     // Add a remove button
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.onclick = () => removeRecipeItem(index);
     actionTd.appendChild(removeBtn);
-    
+
     // Append all cells to row in the new order
     tr.appendChild(dragHandleTd); // First column
     tr.appendChild(nameTd);       // Second column
     tr.appendChild(recipeTd);     // Third column
     tr.appendChild(actionTd);     // Fourth column
-    
+
     addDragAndDropHandlers(tr);
     return tr;
   }
@@ -230,8 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle dragenter event (when dragged element enters a valid drop target)
   function handleDragEnter(event) {
     const targetRow = event.target.closest("tr");
-    if (targetRow && draggedRow !== targetRow && 
-        draggedRow.dataset.type === targetRow.dataset.type) {
+    if (targetRow && draggedRow !== targetRow &&
+      draggedRow.dataset.type === targetRow.dataset.type) {
       targetRow.classList.add("drag-over");
     }
   }
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetRow) {
       targetRow.classList.remove("drag-over");
     }
-    
+
     if (
       draggedRow !== event.target &&
       draggedRow.dataset.type === targetRow.dataset.type
@@ -315,18 +315,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function addUrl() {
     let name = urlNameInput.value.trim();
     let url = urlValueInput.value.trim();
-    
+
     // Validate URL - must contain placeholder and start with http:// or https://
     if (name && url.includes("{placeholder}")) {
       // Create a test URL with a placeholder replacement to validate
       const testUrl = url.replace("{placeholder}", "test");
-      
+
       if (testUrl.startsWith("http://") || testUrl.startsWith("https://")) {
         let newItem = { id: Date.now(), name, url, note: "" };
         savedUrls.push(newItem);
         chrome.storage.local.set({ savedUrls }, loadOptions);
         chrome.runtime.sendMessage({ action: "updateContextMenu" });
-        
+
         // Clear input fields after successful add
         urlNameInput.value = "";
         urlValueInput.value = "";
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
       savedRecipes.push(newItem);
       chrome.storage.local.set({ savedRecipes }, loadOptions);
       chrome.runtime.sendMessage({ action: "updateContextMenu" });
-      
+
       // Clear input fields after successful add
       recipeNameInput.value = "";
       recipeValueInput.value = "";
@@ -393,32 +393,32 @@ document.addEventListener("DOMContentLoaded", () => {
             chrome.storage.local.get(
               ["savedUrls", "savedRecipes"],
               (currentData) => {
-                
+
                 // Validate imported URLs
                 let validUrls = (importedData.savedUrls || []).filter(item => {
                   if (!item.url || !item.url.includes("{placeholder}")) {
                     return false;
                   }
-                  
+
                   const testUrl = item.url.replace("{placeholder}", "test");
                   return testUrl.startsWith("http://") || testUrl.startsWith("https://");
                 });
-                
+
                 if (validUrls.length < (importedData.savedUrls || []).length) {
                   const skippedCount = (importedData.savedUrls || []).length - validUrls.length;
                   alert(`Warning: ${skippedCount} URL(s) were skipped because they didn't meet security requirements.`);
                 }
-                
+
                 // For recipes, only filter out items with empty recipe property
                 let validRecipes = (importedData.savedRecipes || []).filter(item => {
                   return item.recipe; // Just ensure the recipe property exists and is not empty
                 });
-                
+
                 const mergedUrls = [
                   ...(currentData.savedUrls || []),
                   ...validUrls,
                 ];
-                
+
                 const mergedRecipes = [
                   ...(currentData.savedRecipes || []),
                   ...validRecipes,
@@ -496,9 +496,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to filter items based on search input
   function filterItems(table, query, items, rowCreator) {
     // Clear the current table content, including the drag handle header
-    table.innerHTML = "<tr><th></th><th>Name</th><th>" + 
-                      (items === savedUrls ? "URL" : "Recipe") + 
-                      "</th><th>Action</th></tr>";
+    table.innerHTML = "<tr><th></th><th>Name</th><th>" +
+      (items === savedUrls ? "URL" : "Recipe") +
+      "</th><th>Action</th></tr>";
 
     // If no query, show all items
     if (!query) {

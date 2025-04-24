@@ -1,142 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResearchKit Options</title>
-        <script defer src="scripts/options.js"></script>
-        <link rel="stylesheet" href="styles/variables.css" />
-    <link rel="stylesheet" href="styles/options.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>ResearchKit Options</h1>
 
-      <!-- Modal for notes -->
-      <div id="noteModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h3>Edit Note</h3>
-          <textarea id="noteText" rows="5" placeholder="Enter a note..."></textarea>
-          <button id="saveNote">Save Note</button>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResearchKit Options</title>
+  <script defer src="scripts/options.js"></script>
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/options.css" />
+</head>
 
-      <!-- Menu for selecting sections -->
-      <div class="menu">
-        <button id="showUrls">Saved URLs</button>
-        <button id="showRecipes">Saved Recipes</button>
-        <button id="showAdvancedSettings">Advanced Settings</button>
-      </div>
+<body>
+  <div class="container">
+    <h1>ResearchKit Options</h1>
 
-      <!-- Saved URLs Section -->
-      <div id="urlsSection" class="section">
-        <h2>Saved URLs</h2>
-        <p class="info-paragraph">
-          Add URLs with a placeholder for selected text. The placeholder should be
-          in the format {placeholder}
-          (<code>https://google.com/search?q={placeholder}</code>).
-        </p>
-        <!-- Add search box for URLs -->
-        <div class="search-container">
-          <input type="text" id="urlSearch" class="search-input" placeholder="Search URLs...">
-        </div>
-        <div class="inline-container">
-          <!-- Input fields for adding a new URL -->
-          <input type="text" id="urlName" class="name-input" placeholder="Name" />
-          <input
-            type="text"
-            id="urlValue"
-            class="value-input"
-            placeholder="URL with {placeholder}"
-          />
-          <button id="addUrl">Add URL</button>
-        </div>
-        <!-- Table to display saved URLs -->
-        <table id="urlTable">
-          <tr>
-            <!-- Table rows will be dynamically added -->
-          </tr>
-        </table>
-      </div>
-
-      <!-- Saved Recipes Section -->
-      <div id="recipesSection" class="section">
-        <h2>Saved Recipes</h2>
-        <p class="info-paragraph">
-          Add recipes that can be run on selected text using CyberChef. The recipe
-          can be copied from the CyberChef URL after <code>#recipe=</code> and
-          before <code>&input=</code>. For example, given 
-          <code style="word-wrap: break-word">
-            https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')&input=YXNkZg
-          </code>
-          copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
-        </p>
-        <!-- Add search box for Recipes -->
-        <div class="search-container">
-          <input type="text" id="recipeSearch" class="search-input" placeholder="Search Recipes...">
-        </div>
-        <div class="inline-container">
-          <!-- Input fields for adding a new recipe -->
-          <input
-            type="text"
-            id="recipeName"
-            class="name-input"
-            placeholder="Recipe Name"
-          />
-          <input
-            type="text"
-            id="recipeValue"
-            class="value-input"
-            placeholder="Recipe Value"
-          />
-          <button id="addRecipe">Add Recipe</button>
-        </div>
-        <!-- Table to display saved recipes -->
-        <table id="recipeTable">
-          <tr>
-            <!-- Table rows will be dynamically added -->
-          </tr>
-        </table>
-      </div>
-
-      <!-- Advanced Settings Section -->
-      <div id="advancedSettingsSection" class="section">
-        <h2>Advanced Settings</h2>
-
-        <!-- CyberChef URL Configuration -->
-        <h3>CyberChef URL</h3>
-        <p class="info-paragraph">
-          Set the URL for CyberChef. You can reset it to the default value if needed.
-        </p>
-        <div class="inline-container">
-          <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
-          <button id="saveCyberchefUrl">Save</button>
-          <button id="resetCyberchefUrl">Reset to Default</button>
-        </div>
-
-        <!-- Import / Export Settings -->
-        <h3>Import / Export Settings</h3>
-        <p class="info-paragraph">
-          Export your current configuration or import a new one. The imported file
-          should be in JSON format.
-        </p>
-        <div class="inline-container">
-          <button id="exportData">Export Configuration</button>
-          <input type="file" id="importFile" accept="application/json" style="display: none;" />
-          <button id="importData">Import Lookups & Recipes</button>
-        </div>
-
-        <!-- Dark Mode Toggle -->
-        <h3>Dark Mode</h3>
-        <div class="inline-container">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" />
-            <span class="slider round"></span>
-          </label>
-          <p>Enable Dark Mode</p>
-        </div>
+    <!-- Modal for notes -->
+    <div id="noteModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Edit Note</h3>
+        <textarea id="noteText" rows="5" placeholder="Enter a note..."></textarea>
+        <button id="saveNote">Save Note</button>
       </div>
     </div>
-  </body>
+
+    <!-- Menu for selecting sections -->
+    <div class="menu">
+      <button id="showUrls">Saved URLs</button>
+      <button id="showRecipes">Saved Recipes</button>
+      <button id="showAdvancedSettings">Advanced Settings</button>
+    </div>
+
+    <!-- Saved URLs Section -->
+    <div id="urlsSection" class="section">
+      <h2>Saved URLs</h2>
+      <p class="info-paragraph">
+        Add URLs with a placeholder for selected text. The placeholder should be
+        in the format {placeholder}
+        (<code>https://google.com/search?q={placeholder}</code>).
+      </p>
+      <!-- Add search box for URLs -->
+      <div class="search-container">
+        <input type="text" id="urlSearch" class="search-input" placeholder="Search URLs...">
+      </div>
+      <div class="inline-container">
+        <!-- Input fields for adding a new URL -->
+        <input type="text" id="urlName" class="name-input" placeholder="Name" />
+        <input type="text" id="urlValue" class="value-input" placeholder="URL with {placeholder}" />
+        <button id="addUrl">Add URL</button>
+      </div>
+      <!-- Table to display saved URLs -->
+      <table id="urlTable">
+        <tr>
+          <!-- Table rows will be dynamically added -->
+        </tr>
+      </table>
+    </div>
+
+    <!-- Saved Recipes Section -->
+    <div id="recipesSection" class="section">
+      <h2>Saved Recipes</h2>
+      <p class="info-paragraph">
+        Add recipes that can be run on selected text using CyberChef. The recipe
+        can be copied from the CyberChef URL after <code>#recipe=</code> and
+        before <code>&input=</code>. For example, given
+        <code style="word-wrap: break-word">
+            https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')&input=YXNkZg
+          </code>
+        copy <code>To_Base64('A-Za-z0-9%2B/%3D')</code>.
+      </p>
+      <!-- Add search box for Recipes -->
+      <div class="search-container">
+        <input type="text" id="recipeSearch" class="search-input" placeholder="Search Recipes...">
+      </div>
+      <div class="inline-container">
+        <!-- Input fields for adding a new recipe -->
+        <input type="text" id="recipeName" class="name-input" placeholder="Recipe Name" />
+        <input type="text" id="recipeValue" class="value-input" placeholder="Recipe Value" />
+        <button id="addRecipe">Add Recipe</button>
+      </div>
+      <!-- Table to display saved recipes -->
+      <table id="recipeTable">
+        <tr>
+          <!-- Table rows will be dynamically added -->
+        </tr>
+      </table>
+    </div>
+
+    <!-- Advanced Settings Section -->
+    <div id="advancedSettingsSection" class="section">
+      <h2>Advanced Settings</h2>
+
+      <!-- CyberChef URL Configuration -->
+      <h3>CyberChef URL</h3>
+      <p class="info-paragraph">
+        Set the URL for CyberChef. You can reset it to the default value if needed.
+      </p>
+      <div class="inline-container">
+        <input type="text" id="cyberchefUrl" placeholder="Enter CyberChef URL" />
+        <button id="saveCyberchefUrl">Save</button>
+        <button id="resetCyberchefUrl">Reset to Default</button>
+      </div>
+
+      <!-- Import / Export Settings -->
+      <h3>Import / Export Settings</h3>
+      <p class="info-paragraph">
+        Export your current configuration or import a new one. The imported file
+        should be in JSON format.
+      </p>
+      <div class="inline-container">
+        <button id="exportData">Export Configuration</button>
+        <input type="file" id="importFile" accept="application/json" style="display: none;" />
+        <button id="importData">Import Lookups & Recipes</button>
+      </div>
+
+      <!-- Dark Mode Toggle -->
+      <h3>Dark Mode</h3>
+      <div class="inline-container">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider round"></span>
+        </label>
+        <p>Enable Dark Mode</p>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -93,7 +93,7 @@ a:hover {
 }
 
 code {
-  font: 12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace; /* Use monospace font */
+  font: 12px Monaco, Consolas, "Andale  Mono", "DejaVu Sans Mono", monospace; /* Use monospace font */
   color: var(--accent-color);
   padding: 2px; /* Add padding around code */
   font-size: 105%; /* Slightly increase font size */
@@ -202,9 +202,11 @@ td:nth-child(4) {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--input-border-color); /* Default slider background color */
-  -webkit-transition: .4s; /* Smooth transition for slider */
-  transition: .4s; /* Smooth transition for slider */
+  background-color: var(
+    --input-border-color
+  ); /* Default slider background color */
+  -webkit-transition: 0.4s; /* Smooth transition for slider */
+  transition: 0.4s; /* Smooth transition for slider */
 }
 
 .slider:before {
@@ -215,12 +217,14 @@ td:nth-child(4) {
   left: 4px; /* Position of the slider knob */
   bottom: 4px; /* Position of the slider knob */
   background-color: var(--container-background); /* Slider knob color */
-  -webkit-transition: .4s; /* Smooth transition for slider knob */
-  transition: .4s; /* Smooth transition for slider knob */
+  -webkit-transition: 0.4s; /* Smooth transition for slider knob */
+  transition: 0.4s; /* Smooth transition for slider knob */
 }
 
 input:checked + .slider {
-  background-color: var(--accent-color); /* Slider background color when checked */
+  background-color: var(
+    --accent-color
+  ); /* Slider background color when checked */
 }
 
 input:focus + .slider {
@@ -308,7 +312,8 @@ input:checked + .slider:before {
 }
 
 /* Add a note icon and improve drag handle */
-.note-icon, .drag-handle {
+.note-icon,
+.drag-handle {
   cursor: pointer;
   display: inline-block;
   /* margin-left: 8px; Removed */
