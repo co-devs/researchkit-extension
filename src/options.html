@@ -28,6 +28,7 @@
     <div class="menu">
       <button id="showUrls">Saved URLs</button>
       <button id="showRecipes">Saved Recipes</button>
+      <button id="showPrompts">Saved Prompts</button>
       <button id="showAdvancedSettings">Advanced Settings</button>
     </div>
 
@@ -81,6 +82,35 @@
       </div>
       <!-- Table to display saved recipes -->
       <table id="recipeTable">
+        <tr>
+          <!-- Table rows will be dynamically added -->
+        </tr>
+      </table>
+    </div>
+
+    <!-- Saved Prompts Section -->
+    <div id="promptsSection" class="section">
+      <h2>Saved Prompts</h2>
+      <p class="info-paragraph">
+        Add LLM prompts that can be run on selected text. The prompt should contain
+        <code>{placeholder}</code> for the highlighted text.
+      </p>
+      <!-- Add search box for prompts -->
+      <div class="search-container">
+        <input type="text" id="promptSearch" class="search-input" placeholder="Search Prompts...">
+      </div>
+      <div class="inline-container">
+        <!-- Input fields for adding a new prompt -->
+        <input type="text" id="recipeName" class="name-input" placeholder="Recipe Name" />
+        <label for="models">Choose a model:</label>
+        <select name="models" id="models">
+          <!-- Model choices will be dynamically added -->
+        </select>
+        <input type="text" id="recipeValue" class="value-input" placeholder="Recipe Value" />
+        <button id="addPrompt">Add Prompt</button>
+      </div>
+      <!-- Table to display saved recipes -->
+      <table id="promptTable">
         <tr>
           <!-- Table rows will be dynamically added -->
         </tr>

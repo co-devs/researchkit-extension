@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get references to HTML elements for URLs, Recipes, and CyberChef settings
   const urlTable = document.getElementById("urlTable");
   const recipeTable = document.getElementById("recipeTable");
+  const promptTable = document.getElementById("promptTable");
 
   const cyberchefUrlInput = document.getElementById("cyberchefUrl");
   const saveButton = document.getElementById("saveCyberchefUrl");
@@ -69,6 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (recipeTable) {
         recipeTable.innerHTML =
           "<tr><th></th><th>Name</th><th>Recipe</th><th>Action</th></tr>"; // Added empty header for drag handle
+      }
+      if (promptTable) {
+        promptTable.innerHTML =
+          "<tr><th></th><th>Name</th><th>Prompt</th><th>Action</th></tr>"; // Added empty header for drag handle
       }
 
       // Populate the URL table with saved URLs
@@ -563,11 +568,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Section toggling logic for URLs, Recipes, and Advanced Settings
   const urlsSection = document.getElementById("urlsSection");
   const recipesSection = document.getElementById("recipesSection");
+  const promptsSection = document.getElementById("promptsSection");
   const advancedSettingsSection = document.getElementById(
     "advancedSettingsSection"
   );
   const showUrlsButton = document.getElementById("showUrls");
   const showRecipesButton = document.getElementById("showRecipes");
+  const showPromptsButton = document.getElementById("showPrompts");
   const showAdvancedSettingsButton = document.getElementById(
     "showAdvancedSettings"
   );
@@ -576,6 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showUrls() {
     urlsSection.classList.add("active");
     recipesSection.classList.remove("active");
+    promptsSection.classList.remove("active");
     advancedSettingsSection.classList.remove("active");
   }
 
@@ -583,19 +591,29 @@ document.addEventListener("DOMContentLoaded", () => {
   function showRecipes() {
     recipesSection.classList.add("active");
     urlsSection.classList.remove("active");
+    promptsSection.classList.remove("active");
     advancedSettingsSection.classList.remove("active");
+  }
+
+  // Function to show the Prompts section and hide others
+  function showPrompts() {
+    promptsSection.classList.add("active");
+    urlsSection.classList.remove("active");
+    recipesSection.classList.remove("active");
   }
 
   // Function to show the Advanced Settings section and hide others
   function showAdvancedSettings() {
     advancedSettingsSection.classList.add("active");
     urlsSection.classList.remove("active");
+    promptsSection.classList.remove("active");
     recipesSection.classList.remove("active");
   }
 
   // Add event listeners to the menu buttons for section toggling
   showUrlsButton.addEventListener("click", showUrls);
   showRecipesButton.addEventListener("click", showRecipes);
+  showPromptsButton.addEventListener("click", showPrompts);
   showAdvancedSettingsButton.addEventListener("click", showAdvancedSettings);
 
   // Show the URLs section by default
