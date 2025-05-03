@@ -39,7 +39,7 @@ function createContextMenu() {
     });
 
     // Retrieve saved URLs and recipes from local storage
-    chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
+    chrome.storage.sync.get(["savedUrls", "savedRecipes"], (data) => {
       let urls = data.savedUrls || [];
       let recipes = data.savedRecipes || [];
 
@@ -69,7 +69,7 @@ function createContextMenu() {
 // Listener for when a context menu item is clicked
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   // Retrieve saved URLs, recipes, and the CyberChef URL from local storage
-  chrome.storage.local.get(
+  chrome.storage.sync.get(
     ["savedUrls", "savedRecipes", "cyberchefUrl"],
     (data) => {
       let urls = data.savedUrls || [];

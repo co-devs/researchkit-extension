@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const recipeList = document.getElementById("recipeList");
 
   // Load saved URLs and recipes from storage
-  chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
+  chrome.storage.sync.get(["savedUrls", "savedRecipes"], (data) => {
     const urls = data.savedUrls || [];
     const recipes = data.savedRecipes || [];
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Load the saved dark mode preference and apply it to the popup
-  chrome.storage.local.get("darkMode", (data) => {
+  chrome.storage.sync.get("darkMode", (data) => {
     if (data.darkMode) {
       document.body.classList.add("dark-mode");
     }
