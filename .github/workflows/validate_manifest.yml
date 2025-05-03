@@ -2,6 +2,7 @@ name: Validate Manifest
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths: ['**/manifest.json'] # This w/ types may be an OR condition rather than an AND
 
 jobs:
   validate-manifest:
