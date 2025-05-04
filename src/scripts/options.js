@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let savedRecipes = [];
 
   // Load the saved CyberChef URL from storage and populate the input field
-  chrome.storage.local.get("cyberchefUrl", (data) => {
+  chrome.storage.sync.get("cyberchefUrl", (data) => {
     if (data.cyberchefUrl) {
       cyberchefUrlInput.value = data.cyberchefUrl;
     }
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save the CyberChef URL to storage when the save button is clicked
   saveButton.addEventListener("click", () => {
     const cyberchefUrl = cyberchefUrlInput.value;
-    chrome.storage.local.set({ cyberchefUrl }, () => {
+    chrome.storage.sync.set({ cyberchefUrl }, () => {
       alert("CyberChef URL saved.");
     });
   });
@@ -50,14 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Reset the CyberChef URL to the default value when the reset button is clicked
   resetButton.addEventListener("click", () => {
     cyberchefUrlInput.value = defaultCyberchefUrl;
-    chrome.storage.local.set({ cyberchefUrl: defaultCyberchefUrl }, () => {
+    chrome.storage.sync.set({ cyberchefUrl: defaultCyberchefUrl }, () => {
       alert("CyberChef URL reset to default.");
     });
   });
 
   // Function to load saved URLs and Recipes from storage and display them in tables
   function loadOptions() {
-    chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
+    chrome.storage.sync.get(["savedUrls", "savedRecipes"], (data) => {
       savedUrls = data.savedUrls || [];
       savedRecipes = data.savedRecipes || [];
 
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return savedRecipes[index];
     });
 
-    chrome.storage.local.set(
+    chrome.storage.sync.set(
       { savedUrls: newUrls, savedRecipes: newRecipes },
       () => {
         chrome.runtime.sendMessage({ action: "updateContextMenu" });
@@ -300,14 +300,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to remove a URL from the saved list
   function removeUrlItem(index) {
     savedUrls.splice(index, 1);
-    chrome.storage.local.set({ savedUrls }, loadOptions);
+    chrome.storage.sync.set({ savedUrls }, loadOptions);
     chrome.runtime.sendMessage({ action: "updateContextMenu" });
   }
 
   // Function to remove a Recipe from the saved list
   function removeRecipeItem(index) {
     savedRecipes.splice(index, 1);
-    chrome.storage.local.set({ savedRecipes }, loadOptions);
+    chrome.storage.sync.set({ savedRecipes }, loadOptions);
     chrome.runtime.sendMessage({ action: "updateContextMenu" });
   }
 
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (testUrl.startsWith("http://") || testUrl.startsWith("https://")) {
         let newItem = { id: Date.now(), name, url, note: "" };
         savedUrls.push(newItem);
-        chrome.storage.local.set({ savedUrls }, loadOptions);
+        chrome.storage.sync.set({ savedUrls }, loadOptions);
         chrome.runtime.sendMessage({ action: "updateContextMenu" });
         
         // Clear input fields after successful add
@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (name && recipe) {
       let newItem = { id: Date.now(), name, recipe, note: "" };
       savedRecipes.push(newItem);
-      chrome.storage.local.set({ savedRecipes }, loadOptions);
+      chrome.storage.sync.set({ savedRecipes }, loadOptions);
       chrome.runtime.sendMessage({ action: "updateContextMenu" });
       
       // Clear input fields after successful add
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to export saved URLs and Recipes to a JSON file
   function exportData() {
-    chrome.storage.local.get(["savedUrls", "savedRecipes"], (data) => {
+    chrome.storage.sync.get(["savedUrls", "savedRecipes"], (data) => {
       const exportData = {
         savedUrls: data.savedUrls || [],
         savedRecipes: data.savedRecipes || [],
@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.onload = (e) => {
           try {
             const importedData = JSON.parse(e.target.result);
-            chrome.storage.local.get(
+            chrome.storage.sync.get(
               ["savedUrls", "savedRecipes"],
               (currentData) => {
                 
@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   ...validRecipes,
                 ];
 
-                chrome.storage.local.set(
+                chrome.storage.sync.set(
                   { savedUrls: mergedUrls, savedRecipes: mergedRecipes },
                   () => {
                     alert("Data imported successfully.");
@@ -471,12 +471,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the note in storage
     if (currentItemType === "url") {
-      chrome.storage.local.set({ savedUrls }, () => {
+      chrome.storage.sync.set({ savedUrls }, () => {
         modal.style.display = "none";
         loadOptions(); // Reload to show note indicator
       });
     } else if (currentItemType === "recipe") {
-      chrome.storage.local.set({ savedRecipes }, () => {
+      chrome.storage.sync.set({ savedRecipes }, () => {
         modal.style.display = "none";
         loadOptions(); // Reload to show note indicator
       });
@@ -605,7 +605,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const darkModeToggle = document.getElementById("darkModeToggle");
 
   // Load the saved dark mode preference and apply it
-  chrome.storage.local.get("darkMode", (data) => {
+  chrome.storage.sync.get("darkMode", (data) => {
     if (data.darkMode) {
       document.body.classList.add("dark-mode");
       darkModeToggle.checked = true;
@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
   darkModeToggle.addEventListener("change", () => {
     const isDarkMode = darkModeToggle.checked;
     document.body.classList.toggle("dark-mode", isDarkMode);
-    chrome.storage.local.set({ darkMode: isDarkMode });
+    chrome.storage.sync.set({ darkMode: isDarkMode });
 
     // Notify the popup to update its dark mode
     chrome.runtime.sendMessage({
