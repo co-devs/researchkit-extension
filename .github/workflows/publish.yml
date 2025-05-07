@@ -70,7 +70,7 @@ jobs:
 
       - name: Upload step
         run: |-
-          chrome-webstore-upload upload \\
+          chrome-webstore-upload \\
             --source ./chrome-extension-${{ github.sha }}.zip \\
             --extension-id ${{ secrets.CI_EXTENSION_ID}} \\
             --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
