@@ -116,4 +116,5 @@
       "note": "Defang URLs and IP addresses",
       "recipe": "Defang_IP_Addresses()Defang_URL(true,true,true,'Valid%20domains%20and%20full%20URLs')"
     }
+  ]
 }
