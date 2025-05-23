@@ -108,7 +108,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         );
         if (selectedItem) {
           // Base64 encode the selected text and replace the placeholders in the URL
-          let encodedText = btoa(info.selectionText);
+          let encodedText = encodeURIComponent(btoa(info.selectionText));
           let finalUrl = cyberchefUrl
             .replace("${recipe}", selectedItem.recipe)
             .replace("${encodedText}", encodedText);
